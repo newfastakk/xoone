@@ -1,22 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome, Xoone page</title>
+    <title>Xoone Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /*  стили и анимации */
+        /* Пользовательские стили и анимации */
         body {
             font-family: 'Inter', sans-serif;
             overflow-x: hidden; /* Предотвращаем горизонтальную прокрутку */
             background-color: #0d1117; /* Темный фон по умолчанию */
         }
 
-        /*  фона */
+        /* Анимация градиентного фона */
         .animated-background {
             position: fixed;
             top: 0;
@@ -26,7 +25,7 @@
             background: linear-gradient(135deg, #1a202c, #2d3748, #4a5568, #2d3748, #1a202c);
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
-            z-index: -2; /* hh */
+            z-index: -2; /* Помещаем под контент и частицы */
         }
 
         @keyframes gradientAnimation {
@@ -35,18 +34,18 @@
             100% { background-position: 0% 50%; }
         }
 
-        /*  */
+        /* Стили для канваса с частицами */
         #particles-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* */
-            pointer-events: none; /* */
+            z-index: -1; /* Помещаем над фоном, но под контентом */
+            pointer-events: none; /* Чтобы не блокировать события мыши */
         }
 
-        
+        /* Эффект размытия для карточек */
         .blur-effect {
             backdrop-filter: blur(10px); /* Эффект размытия */
             -webkit-backdrop-filter: blur(10px); /* Для совместимости с Safari */
@@ -74,6 +73,10 @@
         .fade-in-up.delay-3 { animation-delay: 0.6s; }
         .fade-in-up.delay-4 { animation-delay: 0.8s; }
         .fade-in-up.delay-5 { animation-delay: 1.0s; }
+        .fade-in-up.delay-6 { animation-delay: 1.2s; }
+        .fade-in-up.delay-7 { animation-delay: 1.4s; }
+        .fade-in-up.delay-8 { animation-delay: 1.6s; }
+
 
         /* Плавное наведение на карточки */
         .card-hover-effect {
@@ -100,25 +103,75 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #64748b;
         }
+
+        /* Стили для выпадающего меню */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            min-width: 160px;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        }
+        .dropdown-menu.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .dropdown-menu a, .dropdown-menu button {
+            color: #cbd5e1;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .dropdown-menu a:hover, .dropdown-menu button:hover {
+            background-color: rgba(71, 85, 105, 0.5);
+        }
+        .dropdown-menu .divider {
+            height: 1px;
+            background-color: rgba(71, 85, 105, 0.5);
+            margin: 4px 0;
+        }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen flex items-center justify-center p-4">
+<body class="text-gray-100 min-h-screen flex flex-col items-center p-4">
 
     <div class="animated-background"></div>
 
     <canvas id="particles-canvas"></canvas>
 
     <div class="relative z-10 w-full max-w-6xl mx-auto py-12 px-6 lg:px-8">
-        <header class="text-center mb-16 fade-in-up">
-            <h1 class="text-6xl font-extrabold text-white mb-4 tracking-tight">
-                Xoone page <span class="text-blue-400">Welcome</span>
+        <header class="text-center mb-16 relative">
+            <h1 class="text-6xl font-extrabold text-white mb-4 tracking-tight fade-in-up">
+                Welcome, to <span class="text-blue-400">xoone</span> page.
             </h1>
-            <p class="text-3xl font-light text-gray-300">
-                <span class="font-semibold text-blue-300">Tag:</span> Xoone
-            </p>
+            <div class="absolute top-0 right-0 mt-4 mr-4 fade-in-up delay-1">
+                <button id="menu-button" class="text-gray-300 hover:text-white transition duration-300 ease-in-out">
+                    <i class="fas fa-ellipsis-v text-3xl"></i>
+                </button>
+                <div id="dropdown-content" class="dropdown-menu">
+                    <a href="#matches-section">Match</a>
+                    <a href="#news-section">News</a>
+                    <div class="divider"></div>
+                    <button onclick="changeLanguage('ru')">Русский</button>
+                    <button onclick="changeLanguage('en')">English</button>
+                </div>
+            </div>
         </header>
 
-        <section class="mb-16 fade-in-up delay-1">
+        <section class="mb-16 fade-in-up delay-2">
             <h2 class="text-4xl font-bold text-center text-white mb-10">
                 <i class="fas fa-crown text-yellow-400 mr-3"></i> Капитан
             </h2>
@@ -136,12 +189,12 @@
             </div>
         </section>
 
-        <section class="fade-in-up delay-2">
+        <section class="mb-16 fade-in-up delay-3">
             <h2 class="text-4xl font-bold text-center text-white mb-10">
                 <i class="fas fa-users text-blue-400 mr-3"></i> Игроки
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-3">
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-4">
                     <img src="https://placehold.co/128x128/334155/ffffff?text=GaleReiSky" alt="Изображение игрока GaleReiSky" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
                     <h3 class="text-3xl font-bold text-white mb-2">GaleReiSky</h3>
                     <p class="text-xl text-gray-300 mb-4">
@@ -152,7 +205,7 @@
                     </p>
                 </div>
 
-                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-4">
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-5">
                     <img src="https://placehold.co/128x128/334155/ffffff?text=Kreykeryy" alt="Изображение игрока Kreykeryy" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
                     <h3 class="text-3xl font-bold text-white mb-2">Kreykeryy</h3>
                     <p class="text-xl text-gray-300 mb-4">
@@ -163,7 +216,7 @@
                     </p>
                 </div>
 
-                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-5">
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-6">
                     <img src="https://placehold.co/128x128/334155/ffffff?text=Kupidon" alt="Изображение игрока Kupidon" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
                     <h3 class="text-3xl font-bold text-white mb-2">Kupidon</h3>
                     <p class="text-xl text-gray-300 mb-4">
@@ -172,6 +225,55 @@
                     <p class="text-lg text-gray-400">
                         <span class="font-semibold text-blue-300">MMR:</span> 1996
                     </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="matches-section" class="mb-16 fade-in-up delay-7">
+            <h2 class="text-4xl font-bold text-center text-white mb-10">
+                <i class="fas fa-trophy text-purple-400 mr-3"></i> Предстоящие Матчи
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect text-center flex flex-col justify-center items-center h-48">
+                    <h3 class="text-2xl font-bold text-white mb-2">Матч ID: #0</h3>
+                    <p class="text-lg text-gray-400">Этот матч в данный момент недоступен.</p>
+                </div>
+
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center">
+                    <h3 class="text-2xl font-bold text-white mb-4">Матч ID: #1</h3>
+                    <img src="https://placehold.co/200x100/334155/ffffff?text=Match+Image" alt="Изображение матча" class="w-full max-w-xs mx-auto mb-4 rounded-lg border-2 border-purple-400 shadow-md">
+                    <p class="text-xl text-gray-300 mb-2">
+                        <span class="font-semibold text-purple-300">Дата:</span> 12.06.2024
+                    </p>
+                    <p class="text-lg text-gray-400">
+                        <span class="font-semibold text-purple-300">Заголовок:</span> Скоро будет анонсирован!
+                    </p>
+                    <p class="text-md text-gray-500 mt-2">
+                        Описание матча появится позднее.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="news-section" class="fade-in-up delay-8">
+            <h2 class="text-4xl font-bold text-center text-white mb-10">
+                <i class="fas fa-newspaper text-green-400 mr-3"></i> Последние Новости
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-10">
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        <div class="flex-shrink-0">
+                            <img src="https://i.ibb.co/11h7k0M/IMG-20250530-195247-923.jpg" alt="Изображение новости" class="w-full md:w-64 h-auto rounded-lg border-2 border-green-400 shadow-md">
+                        </div>
+                        <div class="flex-grow text-center md:text-left">
+                            <p class="text-sm text-gray-400 mb-2">Дата: Сегодня</p>
+                            <h3 class="text-2xl font-bold text-white mb-4">Возвращение Xoone!</h3>
+                            <blockquote class="text-lg italic text-gray-300 border-l-4 border-green-500 pl-4 mb-4">
+                                "Команда Xoone, спустя почти год, возвращается, и готова играть командой праки, турниры и вместе проводить время!"
+                            </blockquote>
+                            <p class="text-md font-semibold text-gray-500">Автор: Hexwound</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -247,6 +349,31 @@
             initParticles();
             animateParticles();
         };
+
+        // JavaScript для выпадающего меню "три точки"
+        const menuButton = document.getElementById('menu-button');
+        const dropdownContent = document.getElementById('dropdown-content');
+
+        menuButton.addEventListener('click', () => {
+            dropdownContent.classList.toggle('show');
+        });
+
+        // Закрыть меню при клике вне его
+        window.addEventListener('click', (event) => {
+            if (!event.target.matches('#menu-button') && !event.target.matches('.dropdown-menu *')) {
+                if (dropdownContent.classList.contains('show')) {
+                    dropdownContent.classList.remove('show');
+                }
+            }
+        });
+
+        // Функция для смены языка (пример)
+        function changeLanguage(lang) {
+            alert(`Язык будет изменен на: ${lang} (пока это только демонстрация)`);
+            // Здесь можно добавить логику для реальной смены языка,
+            // например, загрузку JSON с переводами или изменение текста элементов.
+            dropdownContent.classList.remove('show'); // Закрыть меню после выбора
+        }
     </script>
 </body>
 </html>

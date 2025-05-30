@@ -1,0 +1,252 @@
+// swaga
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome, Xoone page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /*  стили и анимации */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Предотвращаем горизонтальную прокрутку */
+            background-color: #0d1117; /* Темный фон по умолчанию */
+        }
+
+        /*  фона */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a202c, #2d3748, #4a5568, #2d3748, #1a202c);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            z-index: -2; /* hh */
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /*  */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* */
+            pointer-events: none; /* */
+        }
+
+        
+        .blur-effect {
+            backdrop-filter: blur(10px); /* Эффект размытия */
+            -webkit-backdrop-filter: blur(10px); /* Для совместимости с Safari */
+            background-color: rgba(30, 41, 59, 0.7); /* Полупрозрачный фон */
+            border: 1px solid rgba(71, 85, 105, 0.3); /* Легкая рамка */
+        }
+
+        /* Анимация появления элементов */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Задержки для анимации */
+        .fade-in-up.delay-1 { animation-delay: 0.2s; }
+        .fade-in-up.delay-2 { animation-delay: 0.4s; }
+        .fade-in-up.delay-3 { animation-delay: 0.6s; }
+        .fade-in-up.delay-4 { animation-delay: 0.8s; }
+        .fade-in-up.delay-5 { animation-delay: 1.0s; }
+
+        /* Плавное наведение на карточки */
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Пользовательский скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a202c;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="animated-background"></div>
+
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="relative z-10 w-full max-w-6xl mx-auto py-12 px-6 lg:px-8">
+        <header class="text-center mb-16 fade-in-up">
+            <h1 class="text-6xl font-extrabold text-white mb-4 tracking-tight">
+                Команда <span class="text-blue-400">Siandoffe</span>
+            </h1>
+            <p class="text-3xl font-light text-gray-300">
+                <span class="font-semibold text-blue-300">Tag:</span> Xoone
+            </p>
+        </header>
+
+        <section class="mb-16 fade-in-up delay-1">
+            <h2 class="text-4xl font-bold text-center text-white mb-10">
+                <i class="fas fa-crown text-yellow-400 mr-3"></i> Капитан
+            </h2>
+            <div class="flex flex-col items-center">
+                <div class="w-full max-w-sm p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=HEXWOUND" alt="Изображение капитана HEXWOUND" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <h3 class="text-3xl font-bold text-white mb-2">HEXWOUND</h3>
+                    <p class="text-xl text-gray-300 mb-4">
+                        <span class="font-semibold text-blue-300">Ранг:</span> The legend
+                    </p>
+                    <p class="text-lg text-gray-400">
+                        <span class="font-semibold text-blue-300">MMR:</span> 2100
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-in-up delay-2">
+            <h2 class="text-4xl font-bold text-center text-white mb-10">
+                <i class="fas fa-users text-blue-400 mr-3"></i> Игроки
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-3">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=GaleReiSky" alt="Изображение игрока GaleReiSky" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <h3 class="text-3xl font-bold text-white mb-2">GaleReiSky</h3>
+                    <p class="text-xl text-gray-300 mb-4">
+                        <span class="font-semibold text-blue-300">Ранг:</span> The legend
+                    </p>
+                    <p class="text-lg text-gray-400">
+                        <span class="font-semibold text-blue-300">MMR:</span> 2100
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-4">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=Kreykeryy" alt="Изображение игрока Kreykeryy" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <h3 class="text-3xl font-bold text-white mb-2">Kreykeryy</h3>
+                    <p class="text-xl text-gray-300 mb-4">
+                        <span class="font-semibold text-blue-300">Ранг:</span> The legend
+                    </p>
+                    <p class="text-lg text-gray-400">
+                        <span class="font-semibold text-blue-300">MMR:</span> 2100+
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-5">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=Kupidon" alt="Изображение игрока Kupidon" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <h3 class="text-3xl font-bold text-white mb-2">Kupidon</h3>
+                    <p class="text-xl text-gray-300 mb-4">
+                        <span class="font-semibold text-blue-300">Ранг:</span> Elite
+                    </p>
+                    <p class="text-lg text-gray-400">
+                        <span class="font-semibold text-blue-300">MMR:</span> 1996
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript для анимации частиц
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const numParticles = 100;
+
+        // Устанавливаем размеры канваса
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        setCanvasSize();
+        window.addEventListener('resize', setCanvasSize);
+
+        // Класс частицы
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 3 + 1; // Размер частицы
+                this.speedX = Math.random() * 0.5 - 0.25; // Скорость по X
+                this.speedY = Math.random() * 0.5 - 0.25; // Скорость по Y
+                this.color = `rgba(147, 197, 253, ${Math.random() * 0.5 + 0.2})`; // Полупрозрачный синий
+            }
+
+            // Обновление позиции частицы
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Если частица выходит за границы, перемещаем ее на противоположную сторону
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            // Отрисовка частицы
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Инициализация частиц
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < numParticles; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                particles.push(new Particle(x, y));
+            }
+        }
+
+        // Анимационный цикл
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Очистка канваса
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animateParticles); // Запрос следующего кадра
+        }
+
+        // Запуск анимации частиц при загрузке окна
+        window.onload = function() {
+            initParticles();
+            animateParticles();
+        };
+    </script>
+</body>
+</html>

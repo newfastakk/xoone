@@ -76,6 +76,12 @@
         .fade-in-up.delay-6 { animation-delay: 1.2s; }
         .fade-in-up.delay-7 { animation-delay: 1.4s; }
         .fade-in-up.delay-8 { animation-delay: 1.6s; }
+        .fade-in-up.delay-9 { animation-delay: 1.8s; }
+        .fade-in-up.delay-10 { animation-delay: 2.0s; }
+        .fade-in-up.delay-11 { animation-delay: 2.2s; }
+        .fade-in-up.delay-12 { animation-delay: 2.4s; }
+        .fade-in-up.delay-13 { animation-delay: 2.6s; }
+        .fade-in-up.delay-14 { animation-delay: 2.8s; }
 
 
         /* Плавное наведение на карточки */
@@ -106,7 +112,6 @@
 
         /* Стили для выпадающего меню */
         .dropdown-menu {
-            display: none;
             position: absolute;
             right: 0;
             background-color: rgba(30, 41, 59, 0.9);
@@ -117,32 +122,15 @@
             z-index: 100;
             opacity: 0;
             transform: translateY(-10px);
-            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s ease-out; /* Add visibility transition */
+            visibility: hidden; /* Hide without display: none */
+            pointer-events: none; /* Disable interaction when hidden */
         }
         .dropdown-menu.show {
-            display: block;
             opacity: 1;
             transform: translateY(0);
-        }
-        .dropdown-menu a, .dropdown-menu button {
-            color: #cbd5e1;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            width: 100%;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        .dropdown-menu a:hover, .dropdown-menu button:hover {
-            background-color: rgba(71, 85, 105, 0.5);
-        }
-        .dropdown-menu .divider {
-            height: 1px;
-            background-color: rgba(71, 85, 105, 0.5);
-            margin: 4px 0;
+            visibility: visible;
+            pointer-events: auto; /* Enable interaction when shown */
         }
     </style>
 </head>
@@ -212,7 +200,7 @@
                         <span class="font-semibold text-blue-300">Ранг:</span> The legend
                     </p>
                     <p class="text-lg text-gray-400">
-                        <span class="font-semibold text-blue-300">MMR:</span> 2400
+                        <span class="font-semibold text-blue-300">MMR:</span> 2100+
                     </p>
                 </div>
 
@@ -226,10 +214,32 @@
                         <span class="font-semibold text-blue-300">MMR:</span> 1996
                     </p>
                 </div>
+
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-7">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=Negat1v" alt="Изображение игрока Negat1v" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <h3 class="text-3xl font-bold text-white mb-2">Negat1v</h3>
+                    <p class="text-xl text-gray-300 mb-4">
+                        <span class="font-semibold text-blue-300">Ранг:</span> The legend
+                    </p>
+                    <p class="text-lg text-gray-400">
+                        <span class="font-semibold text-blue-300">MMR:</span> 2300
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-8">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=1wayyy" alt="Изображение игрока 1wayyy" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <h3 class="text-3xl font-bold text-white mb-2">1wayyy</h3>
+                    <p class="text-xl text-gray-300 mb-4">
+                        <span class="font-semibold text-blue-300">Ранг:</span> The legend
+                    </p>
+                    <p class="text-lg text-gray-400">
+                        <span class="font-semibold text-blue-300">MMR:</span> 2121
+                    </p>
+                </div>
             </div>
         </section>
 
-        <section id="matches-section" class="mb-16 fade-in-up delay-7">
+        <section id="matches-section" class="mb-16 fade-in-up delay-9">
             <h2 class="text-4xl font-bold text-center text-white mb-10">
                 <i class="fas fa-trophy text-purple-400 mr-3"></i> Предстоящие Матчи
             </h2>
@@ -239,37 +249,53 @@
                     <p class="text-lg text-gray-400">Этот матч в данный момент недоступен.</p>
                 </div>
 
-                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center">
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-10">
                     <h3 class="text-2xl font-bold text-white mb-4">Матч ID: #1</h3>
-                    <img src="https://placehold.co/200x100/334155/ffffff?text=ops!" alt="Изображение матча" class="w-full max-w-xs mx-auto mb-4 rounded-lg border-2 border-purple-400 shadow-md">
+                    <img src="https://placehold.co/200x100/334155/ffffff?text=Match+Image" alt="[Image of Match]" class="w-full max-w-xs mx-auto mb-4 rounded-lg border-2 border-purple-400 shadow-md">
                     <p class="text-xl text-gray-300 mb-2">
                         <span class="font-semibold text-purple-300">Дата:</span> 12.06.2024
                     </p>
                     <p class="text-lg text-gray-400">
-                        <span class="font-semibold text-purple-300">Заголовок:</span> матч не доступн
+                        <span class="font-semibold text-purple-300">Заголовок:</span> Скоро будет анонсирован!
                     </p>
                     <p class="text-md text-gray-500 mt-2">
-                        информация не найдена.
+                        Описание матча появится позднее.
                     </p>
                 </div>
             </div>
         </section>
 
-        <section id="news-section" class="fade-in-up delay-8">
+        <section id="news-section" class="fade-in-up delay-11">
             <h2 class="text-4xl font-bold text-center text-white mb-10">
                 <i class="fas fa-newspaper text-green-400 mr-3"></i> Последние Новости
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-10">
-                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect">
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect fade-in-up delay-12">
                     <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
                         <div class="flex-shrink-0">
-                            <img src="https://i.ibb.co/11h7k0M/IMG-20250530-195247-923.jpg" alt="Изображение новости" class="w-full md:w-64 h-auto rounded-lg border-2 border-green-400 shadow-md">
+                            <img src="https://i.ibb.co/11h7k0M/IMG-20250530-195247-923.jpg" alt="[Image of Xoone team]" class="w-full md:w-64 h-auto rounded-lg border-2 border-green-400 shadow-md">
                         </div>
                         <div class="flex-grow text-center md:text-left">
-                            <p class="text-sm text-gray-400 mb-2">Дата: Сегодня</p>
+                            <p class="text-sm text-gray-400 mb-2">Дата: 30.05.2025</p>
                             <h3 class="text-2xl font-bold text-white mb-4">Возвращение Xoone!</h3>
                             <blockquote class="text-lg italic text-gray-300 border-l-4 border-green-500 pl-4 mb-4">
                                 "Команда Xoone, спустя почти год, возвращается, и готова играть командой праки, турниры и вместе проводить время!"
+                            </blockquote>
+                            <p class="text-md font-semibold text-gray-500">Автор: Hexwound</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect fade-in-up delay-13">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        <div class="flex-shrink-0">
+                            <img src="https://i.ibb.co/8Lc1B8gq/IMG-20250531-211304-894.jpg" alt="[Image of tournament registration]" class="w-full md:w-64 h-auto rounded-lg border-2 border-green-400 shadow-md">
+                        </div>
+                        <div class="flex-grow text-center md:text-left">
+                            <p class="text-sm text-gray-400 mb-2">Дата: 31.05.2025</p>
+                            <h3 class="text-2xl font-bold text-white mb-4">Зарегистрировались на наш первый турнир!</h3>
+                            <blockquote class="text-lg italic text-gray-300 border-l-4 border-green-500 pl-4 mb-4">
+                                "Турнир от Passive tactical unlimited."
                             </blockquote>
                             <p class="text-md font-semibold text-gray-500">Автор: Hexwound</p>
                         </div>
@@ -354,13 +380,14 @@
         const menuButton = document.getElementById('menu-button');
         const dropdownContent = document.getElementById('dropdown-content');
 
-        menuButton.addEventListener('click', () => {
+        menuButton.addEventListener('click', (event) => {
+            event.stopPropagation(); // Предотвращаем всплытие события, чтобы оно не закрыло меню сразу
             dropdownContent.classList.toggle('show');
         });
 
         // Закрыть меню при клике вне его
         window.addEventListener('click', (event) => {
-            if (!event.target.matches('#menu-button') && !event.target.matches('.dropdown-menu *')) {
+            if (!dropdownContent.contains(event.target) && !menuButton.contains(event.target)) {
                 if (dropdownContent.classList.contains('show')) {
                     dropdownContent.classList.remove('show');
                 }
@@ -369,9 +396,9 @@
 
         // Функция для смены языка (пример)
         function changeLanguage(lang) {
+            // В реальном приложении здесь была бы логика для загрузки переводов
+            // или изменения текста на странице.
             alert(`Язык будет изменен на: ${lang} (пока это только демонстрация)`);
-            // Здесь можно добавить логику для реальной смены языка,
-            // например, загрузку JSON с переводами или изменение текста элементов.
             dropdownContent.classList.remove('show'); // Закрыть меню после выбора
         }
     </script>

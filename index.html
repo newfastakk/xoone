@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xoone Page</title>
+    <title data-key="page_title">Xoone Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Пользовательские стили и анимации */
+        /* Custom styles and animations */
         body {
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Предотвращаем горизонтальную прокрутку */
-            background-color: #0d1117; /* Темный фон по умолчанию */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            background-color: #0d1117; /* Default dark background */
         }
 
-        /* Анимация градиентного фона */
+        /* Gradient background animation */
         .animated-background {
             position: fixed;
             top: 0;
@@ -25,7 +25,7 @@
             background: linear-gradient(135deg, #1a202c, #2d3748, #4a5568, #2d3748, #1a202c);
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
-            z-index: -2; /* Помещаем под контент и частицы */
+            z-index: -2; /* Place below content and particles */
         }
 
         @keyframes gradientAnimation {
@@ -34,26 +34,26 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Стили для канваса с частицами */
+        /* Styles for particles canvas */
         #particles-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Помещаем над фоном, но под контентом */
-            pointer-events: none; /* Чтобы не блокировать события мыши */
+            z-index: -1; /* Place above background, but below content */
+            pointer-events: none; /* Do not block mouse events */
         }
 
-        /* Эффект размытия для карточек */
+        /* Blur effect for cards */
         .blur-effect {
-            backdrop-filter: blur(10px); /* Эффект размытия */
-            -webkit-backdrop-filter: blur(10px); /* Для совместимости с Safari */
-            background-color: rgba(30, 41, 59, 0.7); /* Полупрозрачный фон */
-            border: 1px solid rgba(71, 85, 105, 0.3); /* Легкая рамка */
+            backdrop-filter: blur(10px); /* Blur effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
+            background-color: rgba(30, 41, 59, 0.7); /* Semi-transparent background */
+            border: 1px solid rgba(71, 85, 105, 0.3); /* Light border */
         }
 
-        /* Анимация появления элементов */
+        /* Fade-in-up animation for elements */
         .fade-in-up {
             opacity: 0;
             transform: translateY(20px);
@@ -67,7 +67,7 @@
             }
         }
 
-        /* Задержки для анимации */
+        /* Animation delays */
         .fade-in-up.delay-1 { animation-delay: 0.2s; }
         .fade-in-up.delay-2 { animation-delay: 0.4s; }
         .fade-in-up.delay-3 { animation-delay: 0.6s; }
@@ -82,9 +82,11 @@
         .fade-in-up.delay-12 { animation-delay: 2.4s; }
         .fade-in-up.delay-13 { animation-delay: 2.6s; }
         .fade-in-up.delay-14 { animation-delay: 2.8s; }
+        .fade-in-up.delay-15 { animation-delay: 3.0s; }
+        .fade-in-up.delay-16 { animation-delay: 3.2s; }
 
 
-        /* Плавное наведение на карточки */
+        /* Smooth hover effect for cards */
         .card-hover-effect {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -93,7 +95,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
         }
 
-        /* Пользовательский скроллбар */
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -110,7 +112,7 @@
             background: #64748b;
         }
 
-        /* Стили для выпадающего меню */
+        /* Styles for dropdown menu */
         .dropdown-menu {
             position: absolute;
             right: 0;
@@ -122,15 +124,15 @@
             z-index: 100;
             opacity: 0;
             transform: translateY(-10px);
-            transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s ease-out; /* Add visibility transition */
-            visibility: hidden; /* Hide without display: none */
-            pointer-events: none; /* Disable interaction when hidden */
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s ease-out;
+            visibility: hidden;
+            pointer-events: none;
         }
         .dropdown-menu.show {
             opacity: 1;
             transform: translateY(0);
             visibility: visible;
-            pointer-events: auto; /* Enable interaction when shown */
+            pointer-events: auto;
         }
     </style>
 </head>
@@ -142,7 +144,7 @@
 
     <div class="relative z-10 w-full max-w-6xl mx-auto py-12 px-6 lg:px-8">
         <header class="text-center mb-16 relative">
-            <h1 class="text-6xl font-extrabold text-white mb-4 tracking-tight fade-in-up">
+            <h1 class="text-6xl font-extrabold text-white mb-4 tracking-tight fade-in-up" data-key="welcome_title">
                 Welcome, to <span class="text-blue-400">xoone</span> page.
             </h1>
             <div class="absolute top-0 right-0 mt-4 mr-4 fade-in-up delay-1">
@@ -150,154 +152,164 @@
                     <i class="fas fa-ellipsis-v text-3xl"></i>
                 </button>
                 <div id="dropdown-content" class="dropdown-menu">
-                    <a href="#matches-section">Match</a>
-                    <a href="#news-section">News</a>
-                    <div class="divider"></div>
-                    <button onclick="changeLanguage('ru')">Русский</button>
-                    <button onclick="changeLanguage('en')">English</button>
+                    <a href="#matches-section" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded-md" data-key="menu_match">Match</a>
+                    <a href="#news-section" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded-md" data-key="menu_news">News</a>
+                    <div class="divider my-1 h-px bg-gray-600"></div>
+                    <button onclick="changeLanguage('ru')" class="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded-md" data-key="menu_ru">Русский</button>
+                    <button onclick="changeLanguage('en')" class="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded-md" data-key="menu_en">English</button>
                 </div>
             </div>
         </header>
 
         <section class="mb-16 fade-in-up delay-2">
-            <h2 class="text-4xl font-bold text-center text-white mb-10">
+            <h2 class="text-4xl font-bold text-center text-white mb-10" data-key="captain_section_title">
                 <i class="fas fa-crown text-yellow-400 mr-3"></i> Капитан
             </h2>
             <div class="flex flex-col items-center">
                 <div class="w-full max-w-sm p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center">
-                    <img src="https://placehold.co/128x128/334155/ffffff?text=HEXWOUND" alt="Изображение капитана HEXWOUND" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=HEXWOUND" alt="[Image of Captain HEXWOUND]" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
                     <h3 class="text-3xl font-bold text-white mb-2">HEXWOUND</h3>
                     <p class="text-xl text-gray-300 mb-4">
-                        <span class="font-semibold text-blue-300">Ранг:</span> The legend
+                        <span class="font-semibold text-blue-300" data-key="rank_prefix">Ранг:</span> The legend
                     </p>
                     <p class="text-lg text-gray-400">
-                        <span class="font-semibold text-blue-300">MMR:</span> 2100
+                        <span class="font-semibold text-blue-300" data-key="mmr_prefix">MMR:</span> 2100
                     </p>
                 </div>
             </div>
         </section>
 
         <section class="mb-16 fade-in-up delay-3">
-            <h2 class="text-4xl font-bold text-center text-white mb-10">
+            <h2 class="text-4xl font-bold text-center text-white mb-10" data-key="players_section_title">
                 <i class="fas fa-users text-blue-400 mr-3"></i> Игроки
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-4">
-                    <img src="https://placehold.co/128x128/334155/ffffff?text=GaleReiSky" alt="Изображение игрока GaleReiSky" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=GaleReiSky" alt="" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
                     <h3 class="text-3xl font-bold text-white mb-2">GaleReiSky</h3>
                     <p class="text-xl text-gray-300 mb-4">
-                        <span class="font-semibold text-blue-300">Ранг:</span> The legend
+                        <span class="font-semibold text-blue-300" data-key="rank_prefix">Ранг:</span> The legend
                     </p>
                     <p class="text-lg text-gray-400">
-                        <span class="font-semibold text-blue-300">MMR:</span> 2100
+                        <span class="font-semibold text-blue-300" data-key="mmr_prefix">MMR:</span> 2100
                     </p>
                 </div>
 
                 <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-5">
-                    <img src="https://placehold.co/128x128/334155/ffffff?text=Kreykeryy" alt="Изображение игрока Kreykeryy" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=Kreykeryy" alt="" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
                     <h3 class="text-3xl font-bold text-white mb-2">Kreykeryy</h3>
                     <p class="text-xl text-gray-300 mb-4">
-                        <span class="font-semibold text-blue-300">Ранг:</span> The legend
+                        <span class="font-semibold text-blue-300" data-key="rank_prefix">Ранг:</span> The legend
                     </p>
                     <p class="text-lg text-gray-400">
-                        <span class="font-semibold text-blue-300">MMR:</span> 2100+
+                        <span class="font-semibold text-blue-300" data-key="mmr_prefix">MMR:</span> 2400
                     </p>
                 </div>
 
                 <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-6">
-                    <img src="https://placehold.co/128x128/334155/ffffff?text=Kupidon" alt="Изображение игрока Kupidon" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=Kupidon" alt="[Image of player Kupidon]" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
                     <h3 class="text-3xl font-bold text-white mb-2">Kupidon</h3>
                     <p class="text-xl text-gray-300 mb-4">
-                        <span class="font-semibold text-blue-300">Ранг:</span> Elite
+                        <span class="font-semibold text-blue-300" data-key="rank_prefix">Ранг:</span> Elite
                     </p>
                     <p class="text-lg text-gray-400">
-                        <span class="font-semibold text-blue-300">MMR:</span> 1996
+                        <span class="font-semibold text-blue-300" data-key="mmr_prefix">MMR:</span> 1996
                     </p>
                 </div>
 
                 <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-7">
-                    <img src="https://placehold.co/128x128/334155/ffffff?text=Negat1v" alt="Изображение игрока Negat1v" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=Negat1v" alt="[Image of player Negat1v]" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
                     <h3 class="text-3xl font-bold text-white mb-2">Negat1v</h3>
                     <p class="text-xl text-gray-300 mb-4">
-                        <span class="font-semibold text-blue-300">Ранг:</span> The legend
+                        <span class="font-semibold text-blue-300" data-key="rank_prefix">Ранг:</span> The legend
                     </p>
                     <p class="text-lg text-gray-400">
-                        <span class="font-semibold text-blue-300">MMR:</span> 2300
+                        <span class="font-semibold text-blue-300" data-key="mmr_prefix">MMR:</span> 2300
                     </p>
                 </div>
 
                 <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-8">
-                    <img src="https://placehold.co/128x128/334155/ffffff?text=1wayyy" alt="Изображение игрока 1wayyy" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
+                    <img src="https://placehold.co/128x128/334155/ffffff?text=1wayyy" alt="[Image of player 1wayyy]" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg">
                     <h3 class="text-3xl font-bold text-white mb-2">1wayyy</h3>
                     <p class="text-xl text-gray-300 mb-4">
-                        <span class="font-semibold text-blue-300">Ранг:</span> The legend
+                        <span class="font-semibold text-blue-300" data-key="rank_prefix">Ранг:</span> The legend
                     </p>
                     <p class="text-lg text-gray-400">
-                        <span class="font-semibold text-blue-300">MMR:</span> 2121
+                        <span class="font-semibold text-blue-300" data-key="mmr_prefix">MMR:</span> 2121
                     </p>
                 </div>
             </div>
         </section>
 
         <section id="matches-section" class="mb-16 fade-in-up delay-9">
-            <h2 class="text-4xl font-bold text-center text-white mb-10">
+            <h2 class="text-4xl font-bold text-center text-white mb-10" data-key="matches_section_title">
                 <i class="fas fa-trophy text-purple-400 mr-3"></i> Предстоящие Матчи
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
-                <div class="p-6 rounded-3xl shadow-2xl blur-effect text-center flex flex-col justify-center items-center h-48">
-                    <h3 class="text-2xl font-bold text-white mb-2">Матч ID: #0</h3>
-                    <p class="text-lg text-gray-400">Этот матч в данный момент недоступен.</p>
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect text-center flex flex-col justify-center items-center h-48 fade-in-up delay-10">
+                    <h3 class="text-2xl font-bold text-white mb-2" data-key="match_id_prefix_0">Матч ID: #0</h3>
+                    <p class="text-lg text-gray-400" data-key="match_unavailable">Этот матч в данный момент недоступен.</p>
                 </div>
 
-                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-10">
-                    <h3 class="text-2xl font-bold text-white mb-4">Матч ID: #1</h3>
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-11">
+                    <h3 class="text-2xl font-bold text-white mb-4" data-key="match_id_prefix_1">Матч ID: #1</h3>
                     <img src="https://placehold.co/200x100/334155/ffffff?text=Match+Image" alt="[Image of Match]" class="w-full max-w-xs mx-auto mb-4 rounded-lg border-2 border-purple-400 shadow-md">
                     <p class="text-xl text-gray-300 mb-2">
-                        <span class="font-semibold text-purple-300">Дата:</span> 12.06.2024
+                        <span class="font-semibold text-purple-300" data-key="date_prefix">Дата:</span> 12.06.2024
                     </p>
-                    <p class="text-lg text-gray-400">
-                        <span class="font-semibold text-purple-300">Заголовок:</span> Скоро будет анонсирован!
-                    </p>
-                    <p class="text-md text-gray-500 mt-2">
-                        Описание матча появится позднее.
+                    <p class="text-2xl font-bold text-white mb-2" data-key="match1_title">Скоро будет анонсирован!</p>
+                    <span class="text-md italic text-gray-400 border-l-4 border-purple-500 pl-2" data-key="match1_desc">Описание матча появится позднее.</span>
+                </div>
+
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect text-center fade-in-up delay-12">
+                    <h3 class="text-2xl font-bold text-white mb-4" data-key="match_id_prefix_2">Матч ID: #2</h3>
+                    <img src="https://i.ibb.co/60YrNt7T/121-20250601200613.png" alt="[Image of match against Selent team]" class="w-full max-w-xs mx-auto mb-4 rounded-lg border-2 border-purple-400 shadow-md">
+                    <p class="text-2xl font-bold text-white mb-2" data-key="match2_title">Прак против команды Selent!</p>
+                    <span class="text-md italic text-gray-400 border-l-4 border-purple-500 pl-2" data-key="match2_desc">Первый прак, и победная! со счетом 13/4.</span>
+                    <p class="text-xl text-gray-300 mt-2">
+                        <span class="font-semibold text-purple-300" data-key="date_prefix">Дата:</span> 01.06.2025
                     </p>
                 </div>
             </div>
         </section>
 
-        <section id="news-section" class="fade-in-up delay-11">
-            <h2 class="text-4xl font-bold text-center text-white mb-10">
+        <section id="news-section" class="fade-in-up delay-13">
+            <h2 class="text-4xl font-bold text-center text-white mb-10" data-key="news_section_title">
                 <i class="fas fa-newspaper text-green-400 mr-3"></i> Последние Новости
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-10">
-                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect fade-in-up delay-12">
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect fade-in-up delay-14">
                     <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
                         <div class="flex-shrink-0">
                             <img src="https://i.ibb.co/11h7k0M/IMG-20250530-195247-923.jpg" alt="[Image of Xoone team]" class="w-full md:w-64 h-auto rounded-lg border-2 border-green-400 shadow-md">
                         </div>
                         <div class="flex-grow text-center md:text-left">
-                            <p class="text-sm text-gray-400 mb-2">Дата: 30.05.2025</p>
-                            <h3 class="text-2xl font-bold text-white mb-4">Возвращение Xoone!</h3>
-                            <blockquote class="text-lg italic text-gray-300 border-l-4 border-green-500 pl-4 mb-4">
+                            <p class="text-sm text-gray-400 mb-2" data-key="date_prefix_news1">Дата: 30.05.2025</p>
+                            <h3 class="text-2xl font-bold text-white mb-4" data-key="news1_title">Возвращение Xoone!</h3>
+                            <blockquote class="text-lg italic text-gray-300 border-l-4 border-green-500 pl-4 mb-4" data-key="news1_desc">
                                 "Команда Xoone, спустя почти год, возвращается, и готова играть командой праки, турниры и вместе проводить время!"
                             </blockquote>
-                            <p class="text-md font-semibold text-gray-500">Автор: Hexwound</p>
+                            <p class="text-md font-semibold text-gray-500">
+                                <span data-key="author_prefix">Автор:</span> Hexwound
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect fade-in-up delay-13">
+                <div class="p-6 rounded-3xl shadow-2xl blur-effect card-hover-effect fade-in-up delay-15">
                     <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
                         <div class="flex-shrink-0">
                             <img src="https://i.ibb.co/8Lc1B8gq/IMG-20250531-211304-894.jpg" alt="[Image of tournament registration]" class="w-full md:w-64 h-auto rounded-lg border-2 border-green-400 shadow-md">
                         </div>
                         <div class="flex-grow text-center md:text-left">
-                            <p class="text-sm text-gray-400 mb-2">Дата: 31.05.2025</p>
-                            <h3 class="text-2xl font-bold text-white mb-4">Зарегистрировались на наш первый турнир!</h3>
-                            <blockquote class="text-lg italic text-gray-300 border-l-4 border-green-500 pl-4 mb-4">
+                            <p class="text-sm text-gray-400 mb-2" data-key="date_prefix_news2">Дата: 31.05.2025</p>
+                            <h3 class="text-2xl font-bold text-white mb-4" data-key="news2_title">Зарегистрировались на наш первый турнир!</h3>
+                            <blockquote class="text-lg italic text-gray-300 border-l-4 border-green-500 pl-4 mb-4" data-key="news2_desc">
                                 "Турнир от Passive tactical unlimited."
                             </blockquote>
-                            <p class="text-md font-semibold text-gray-500">Автор: Hexwound</p>
+                            <p class="text-md font-semibold text-gray-500">
+                                <span data-key="author_prefix">Автор:</span> Hexwound
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -306,13 +318,13 @@
     </div>
 
     <script>
-        // JavaScript для анимации частиц
+        // JavaScript for particle animation
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const numParticles = 100;
+        const numParticles = 100; // Number of particles
 
-        // Устанавливаем размеры канваса
+        // Set canvas size
         function setCanvasSize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -320,28 +332,30 @@
         setCanvasSize();
         window.addEventListener('resize', setCanvasSize);
 
-        // Класс частицы
+        // Particle class
         class Particle {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                this.size = Math.random() * 3 + 1; // Размер частицы
-                this.speedX = Math.random() * 0.5 - 0.25; // Скорость по X
-                this.speedY = Math.random() * 0.5 - 0.25; // Скорость по Y
-                this.color = `rgba(147, 197, 253, ${Math.random() * 0.5 + 0.2})`; // Полупрозрачный синий
+                this.size = Math.random() * 3 + 1; // Particle size
+                this.speedX = Math.random() * 0.5 - 0.25; // Speed on X axis
+                this.speedY = Math.random() * 0.5 - 0.25; // Speed on Y axis
+                this.color = `rgba(147, 197, 253, ${Math.random() * 0.5 + 0.2})`; // Semi-transparent blue
             }
 
-            // Обновление позиции частицы
+            // Update particle position
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // Если частица выходит за границы, перемещаем ее на противоположную сторону
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                // If particle goes out of bounds, wrap it around
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
             }
 
-            // Отрисовка частицы
+            // Draw particle
             draw() {
                 ctx.fillStyle = this.color;
                 ctx.beginPath();
@@ -350,7 +364,7 @@
             }
         }
 
-        // Инициализация частиц
+        // Initialize particles
         function initParticles() {
             particles = [];
             for (let i = 0; i < numParticles; i++) {
@@ -360,32 +374,34 @@
             }
         }
 
-        // Анимационный цикл
+        // Animation loop
         function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Очистка канваса
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
             }
-            requestAnimationFrame(animateParticles); // Запрос следующего кадра
+            requestAnimationFrame(animateParticles); // Request next frame
         }
 
-        // Запуск анимации частиц при загрузке окна
+        // Start particle animation on window load
         window.onload = function() {
             initParticles();
             animateParticles();
+            // Set initial language to Russian
+            changeLanguage('ru');
         };
 
-        // JavaScript для выпадающего меню "три точки"
+        // JavaScript for dropdown menu
         const menuButton = document.getElementById('menu-button');
         const dropdownContent = document.getElementById('dropdown-content');
 
         menuButton.addEventListener('click', (event) => {
-            event.stopPropagation(); // Предотвращаем всплытие события, чтобы оно не закрыло меню сразу
+            event.stopPropagation(); // Prevent event bubbling to close menu immediately
             dropdownContent.classList.toggle('show');
         });
 
-        // Закрыть меню при клике вне его
+        // Close menu when clicking outside
         window.addEventListener('click', (event) => {
             if (!dropdownContent.contains(event.target) && !menuButton.contains(event.target)) {
                 if (dropdownContent.classList.contains('show')) {
@@ -394,12 +410,95 @@
             }
         });
 
-        // Функция для смены языка (пример)
+        // Translations object
+        const translations = {
+            'ru': {
+                'page_title': 'Xoone Page',
+                'welcome_title': 'Welcome, to <span class="text-blue-400">xoone</span> page.',
+                'captain_section_title': '<i class="fas fa-crown text-yellow-400 mr-3"></i> Капитан',
+                'players_section_title': '<i class="fas fa-users text-blue-400 mr-3"></i> Игроки',
+                'rank_prefix': 'Ранг:',
+                'mmr_prefix': 'MMR:',
+                'matches_section_title': '<i class="fas fa-trophy text-purple-400 mr-3"></i> Предстоящие Матчи',
+                'match_id_prefix_0': 'Матч ID: #0',
+                'match_id_prefix_1': 'Матч ID: #1',
+                'match_id_prefix_2': 'Матч ID: #2',
+                'match_unavailable': 'Этот матч в данный момент недоступен.',
+                'date_prefix': 'Дата:',
+                'match1_title': 'Скоро будет анонсирован!',
+                'match1_desc': 'Описание матча появится позднее.',
+                'match2_title': 'Прак против команды Selent!',
+                'match2_desc': 'Первый прак, и победная! со счетом 13/4.',
+                'news_section_title': '<i class="fas fa-newspaper text-green-400 mr-3"></i> Последние Новости',
+                'date_prefix_news1': 'Дата: 30.05.2025',
+                'news1_title': 'Возвращение Xoone!',
+                'news1_desc': '"Команда Xoone, спустя почти год, возвращается, и готова играть командой праки, турниры и вместе проводить время!"',
+                'author_prefix': 'Автор:',
+                'date_prefix_news2': 'Дата: 31.05.2025',
+                'news2_title': 'Зарегистрировались на наш первый турнир!',
+                'news2_desc': '"Турнир от Passive tactical unlimited."',
+                'menu_match': 'Match',
+                'menu_news': 'News',
+                'menu_ru': 'Русский',
+                'menu_en': 'English'
+            },
+            'en': {
+                'page_title': 'Xoone Page',
+                'welcome_title': 'Welcome, to <span class="text-blue-400">xoone</span> page.',
+                'captain_section_title': '<i class="fas fa-crown text-yellow-400 mr-3"></i> Captain',
+                'players_section_title': '<i class="fas fa-users text-blue-400 mr-3"></i> Players',
+                'rank_prefix': 'Rank:',
+                'mmr_prefix': 'MMR:',
+                'matches_section_title': '<i class="fas fa-trophy text-purple-400 mr-3"></i> Upcoming Matches',
+                'match_id_prefix_0': 'Match ID: #0',
+                'match_id_prefix_1': 'Match ID: #1',
+                'match_id_prefix_2': 'Match ID: #2',
+                'match_unavailable': 'This match is currently unavailable.',
+                'date_prefix': 'Date:',
+                'match1_title': 'To be announced soon!',
+                'match1_desc': 'Match description will be available later.',
+                'match2_title': 'Scrim against Selent team!',
+                'match2_desc': 'First scrim, and a victorious one! Score 13/4.',
+                'news_section_title': '<i class="fas fa-newspaper text-green-400 mr-3"></i> Latest News',
+                'date_prefix_news1': 'Date: 05/30/2025',
+                'news1_title': 'Xoone\'s Return!',
+                'news1_desc': '"The Xoone team, after almost a year, is back and ready to play scrims, tournaments, and spend time together!"',
+                'author_prefix': 'Author:',
+                'date_prefix_news2': 'Date: 05/31/2025',
+                'news2_title': 'Registered for our first tournament!',
+                'news2_desc': '"Tournament by Passive tactical unlimited."',
+                'menu_match': 'Match',
+                'menu_news': 'News',
+                'menu_ru': 'Русский',
+                'menu_en': 'English'
+            }
+        };
+
+        // Function to translate the page content
+        function translatePage(lang) {
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    // If the key contains HTML (like icons or spans), use innerHTML
+                    if (key === 'welcome_title' || key.includes('_section_title')) {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Update specific elements that need special handling (e.g., button texts)
+            document.querySelector('#dropdown-content a[href="#matches-section"]').textContent = translations[lang]['menu_match'];
+            document.querySelector('#dropdown-content a[href="#news-section"]').textContent = translations[lang]['menu_news'];
+            document.querySelector('#dropdown-content button[onclick="changeLanguage(\'ru\')"]').textContent = translations[lang]['menu_ru'];
+            document.querySelector('#dropdown-content button[onclick="changeLanguage(\'en\')"]').textContent = translations[lang]['menu_en'];
+        }
+
+        // Function to change the language
         function changeLanguage(lang) {
-            // В реальном приложении здесь была бы логика для загрузки переводов
-            // или изменения текста на странице.
-            alert(`Язык будет изменен на: ${lang} (пока это только демонстрация)`);
-            dropdownContent.classList.remove('show'); // Закрыть меню после выбора
+            translatePage(lang);
+            dropdownContent.classList.remove('show'); // Close menu after selection
         }
     </script>
 </body>
